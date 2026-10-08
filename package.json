@@ -1,0 +1,18 @@
+{
+  "name": "qingyuchen-lab-website",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website of the Qingyu Chen Lab at Yale (rebuilt from Google Sites)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.6",
+    "rehype-external-links": "^3.0.0"
+  }
+}

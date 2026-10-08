@@ -1,0 +1,176 @@
+/*
+ * Reproduction of the Google Sites "Impression" theme (font kit "Capital", color kit "SunsetOrange")
+ * used by the original qingyuchen-lab.com. Sizes follow the original theme CSS.
+ */
+:root {
+  --text: #212121;
+  --ink: #1f1f1f; /* headings, site title, nav */
+  --black: #000000;
+  --muted-sep: #434343;
+  --accent: #f34f4c;
+  --drawer-bg: #f7f7f7;
+  --header-h: 56px;
+  --font-heading: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Open Sans', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: var(--header-h);
+}
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13pt;
+  line-height: 1.6;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  z-index: 100;
+  background: #fff;
+  padding: 6px 10px;
+}
+.skip-link:focus {
+  left: 8px;
+}
+
+/* ---------- Page container and sections ---------- */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+/* 22.7px side padding = the Google Sites grid's column padding (14.7px) + text box padding (8px) */
+.section {
+  padding: 24px 22.7px;
+}
+main > .container > .section:first-child,
+main > .container > :first-child {
+  padding-top: calc(var(--header-h) + 24px);
+}
+@media (max-width: 767px) {
+  .container {
+    padding: 0 5px;
+  }
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  .container {
+    max-width: 544px;
+  }
+}
+
+/* ---------- Typography ---------- */
+/* Google Sites "Title" (h1) and "Heading" (h2): Oswald, uppercase, rendered at 26pt / 24pt / 21pt. */
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: uppercase;
+  font-size: 26pt;
+  margin: 20px 0 0;
+}
+h1 {
+  line-height: calc(38pt * 1.23);
+}
+h2 {
+  line-height: calc(29pt * 1.38);
+}
+@media (min-width: 480px) and (max-width: 767px) {
+  h1,
+  h2 {
+    font-size: 24pt;
+  }
+  h1 {
+    line-height: calc(33pt * 1.23);
+  }
+  h2 {
+    line-height: calc(26pt * 1.38);
+  }
+}
+@media (max-width: 479px) {
+  h1,
+  h2 {
+    font-size: 21pt;
+  }
+  h1 {
+    line-height: calc(27pt * 1.23);
+  }
+  h2 {
+    line-height: calc(22pt * 1.38);
+  }
+}
+/* Subheadings used on Home (bold 13pt, black) */
+h3 {
+  font-family: var(--font-body);
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1.38;
+  color: var(--black);
+  margin: 14pt 0 4pt;
+}
+p {
+  margin: 15px 0 0;
+}
+strong {
+  font-weight: 700;
+}
+
+/* Lists: square bullets hanging outside, text indented 15pt */
+ul {
+  list-style-type: square;
+  margin: 6px 0 0;
+  padding: 0;
+}
+li {
+  margin-left: 15pt;
+}
+
+/* Pasted paragraphs on the original site (e.g. Join): line-height 1.38 with 12pt spacing */
+.tight h1 {
+  margin-top: 16px;
+}
+.tight p,
+.tight li {
+  line-height: 1.38;
+  margin-top: 12pt;
+  margin-bottom: 12pt;
+}
+.tight li > p {
+  margin: 0;
+}
+.tight ul {
+  margin-top: 0;
+}
+/* Smaller 11pt text (team lists, contact details) */
+.small p,
+.small li {
+  font-size: 11pt;
+}
+/* Tightly stacked lines (contact address block) */
+.stack p {
+  line-height: 1.2;
+  margin-top: 0;
+}

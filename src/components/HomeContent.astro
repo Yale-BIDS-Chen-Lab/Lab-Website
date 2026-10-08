@@ -1,0 +1,192 @@
+---
+// Home page content (rendered at both / and /home).
+---
+
+<section class="section hero">
+  <div class="hero-photo">
+    <img src="/images/qingyu-chen.jpg" alt="Qingyu Chen" width="1280" height="1191" />
+  </div>
+  <div class="hero-text">
+    <p class="name"><strong>Qingyu Chen, PhD</strong></p>
+    <p>Assistant Professor, Yale University</p>
+    <p><em>AI in medicine: developed, evaluated, and trusted.</em></p>
+    <p>Biomedical NLP · Medical LLMs · Multimodal AI · Trustworthy AI for medicine</p>
+    <p>
+      Our lab develops AI for medicine across language, imaging, and multimodal health data. We focus on medical LLMs and
+      biomedical NLP, foundation and multimodal models for biomedical and healthcare applications, ophthalmology and
+      medical imaging AI, and rigorous evaluation for trustworthy use in real-world healthcare.
+    </p>
+    <p class="link-row">
+      <a href="https://medicine.yale.edu/profile/qingyu-chen/" target="_blank" rel="noopener">Yale Profile</a><span class="sep"> · </span><a
+        href="https://scholar.google.com/citations?hl=en&user=FSLotiMAAAAJ&view_op=list_works&sortby=pubdate"
+        target="_blank"
+        rel="noopener">Publications</a
+      ><span class="sep"> · </span><a href="/join">Join the Lab</a>
+    </p>
+  </div>
+</section>
+
+<section class="section themes">
+  <h1>Research Themes</h1>
+
+  <h3>Medical LLMs and Biomedical NLP</h3>
+  <p>
+    We develop and evaluate large language models for biomedical and clinical text. Our work includes the development of
+    domain-specific LLMs and broad applications in biomedical natural language processing.
+  </p>
+
+  <h3>Multimodal and Foundation Models in Medicine</h3>
+  <p>
+    We build foundation and multimodal models that integrate language, medical images, and other health data. Our goal is
+    to support scalable representation learning and clinically relevant prediction across medical tasks.
+  </p>
+
+  <h3>Ophthalmology and Medical Imaging AI</h3>
+  <p>
+    We develop AI methods for ophthalmology and broader medical imaging applications, including disease screening,
+    diagnosis, prognosis, and multimodal reasoning. We are especially interested in open and clinically useful models for
+    eye care.
+  </p>
+
+  <h3>Trustworthy AI in Medicine</h3>
+  <p>
+    We study how AI systems in medicine should be evaluated, validated, and trusted. Our work focuses on factuality,
+    memorization, generalization, real-world evaluation, and responsible deployment in healthcare.
+  </p>
+</section>
+
+<section class="section highlights">
+  <h1>Selected Highlights</h1>
+  <ul>
+    <li>Principal Investigator supported by NIH R01, NIH R00, the Blavatnik Fund, Google Research, and Microsoft Azure</li>
+    <li>45+ first- or last-authored papers out of 110+ publications</li>
+    <li>9,000+ citations and an h-index of 47 as of July 2026</li>
+    <li>
+      Awards include the Google Research Scholar Award, AMIA Distinguished Paper Award, NIH Fellows Award for Research
+      Excellence, NLM Honor Award, and Teaching Excellence Award
+    </li>
+    <li>
+      Publications in <em
+        >Nature, Nature Medicine, Nature Communications, Nature Aging, npj Digital Medicine, Nucleic Acids Research, The
+        Lancet Digital Health</em
+      >, and others
+    </li>
+  </ul>
+</section>
+
+<section class="section themes">
+  <h1>Team and Opportunities</h1>
+
+  <h3 class="sans">Team</h3>
+  <p>
+    We are a growing interdisciplinary lab working across biomedical NLP and LLMs, multimodal AI, medical imaging, and
+    trustworthy AI in medicine.
+  </p>
+
+  <h3 class="sans">Join the Lab</h3>
+  <p>
+    We welcome prospective students, postdocs, and collaborators who are interested in building rigorous, clinically
+    grounded, and impactful AI for biomedicine and healthcare.
+  </p>
+  <p class="link-row"><a href="/team">Meet the team</a><span class="sep"> · </span><a href="/join">Join the Lab</a></p>
+</section>
+
+<style>
+  /* Hero: photo in a 3/12 column, text in a 9/12 column (stacks on mobile) */
+  .hero {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    align-items: start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* photo column: grid padding only (no text-box padding), as on the original */
+  .hero-photo {
+    padding: 0 14.7px;
+    text-align: center;
+  }
+  .hero-text {
+    padding: 0 22.7px 0 24px;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  /* 11pt Arial text inside 13pt/1.38 line boxes (23.92px), 12pt apart, as on the original */
+  .hero-text p {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 23.92px;
+    color: var(--black);
+    margin: 12pt 0 0;
+  }
+  .hero-text p:first-child {
+    margin-top: 8px;
+  }
+  .hero-text .name {
+    font-size: 14pt;
+    line-height: 1.38;
+  }
+  .hero-text .link-row {
+    margin-top: 18px;
+  }
+  .hero {
+    padding-bottom: 20px;
+  }
+  .link-row {
+    line-height: 23.92px !important;
+    font-family: Arial, sans-serif;
+    font-size: 10pt !important;
+    color: var(--text) !important;
+  }
+  .sep {
+    color: var(--muted-sep);
+  }
+  /* Research-theme subheadings use Roboto on the original; Team/Join use Open Sans */
+  .themes h3 {
+    font-family: Roboto, Arial, sans-serif;
+  }
+  .themes h3.sans {
+    font-family: var(--font-body);
+  }
+  .themes p {
+    line-height: 1.38;
+    color: var(--black);
+    margin: 12pt 0;
+  }
+  /* subheading line box matches the original 18pt/1.38 heading box */
+  .themes h3 {
+    line-height: 33px;
+  }
+  /* each description is followed by a blank line on the original */
+  .themes p + h3 {
+    margin-top: 35px;
+  }
+  .highlights li + li {
+    margin-top: 6px;
+  }
+  .highlights {
+    padding-bottom: 19px;
+  }
+  @media (max-width: 767px) {
+    .hero {
+      grid-template-columns: 1fr;
+      row-gap: 48px;
+    }
+    .hero-photo img {
+      max-width: 246px;
+    }
+    .hero-text {
+      padding: 0 22.7px;
+    }
+    .themes h3 {
+      line-height: calc(17pt * 1.38);
+    }
+  }
+  @media (max-width: 479px) {
+    .themes h3 {
+      line-height: calc(16pt * 1.38);
+    }
+  }
+</style>

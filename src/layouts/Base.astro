@@ -1,0 +1,45 @@
+---
+import '../styles/theme.css';
+import Header from '../components/Header.astro';
+import devCompare from '../dev/compare.js?raw';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description = 'Qingyu Chen Lab at Yale University: AI in medicine — developed, evaluated, and trusted.' } = Astro.props;
+const fullTitle = title ? `Qingyu Chen Lab - ${title}` : 'Qingyu Chen Lab';
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const canonical = new URL(path === '/home' ? '/' : path, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Oswald:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+    {import.meta.env.DEV && <script is:inline set:html={devCompare} />}
+  </body>
+</html>

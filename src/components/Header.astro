@@ -1,0 +1,247 @@
+---
+const nav = [
+  { href: '/home', label: 'Home' },
+  { href: '/research', label: 'Research' },
+  { href: '/team', label: 'Team' },
+  { href: '/join', label: 'Join' },
+  { href: '/contact_1', label: 'Contact' },
+];
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/home';
+const current = path === '/' || path === '/index' ? '/home' : path;
+---
+
+<!-- Outside the header so it stays above the open drawer (the header's z-index would trap it). -->
+<button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="drawer">
+  <span></span><span></span><span></span>
+</button>
+<header class="site-header" data-scrolled="false">
+  <a class="site-title" href="/home">Qingyu Chen Lab</a>
+  <nav class="tabs" aria-label="Main">
+    <ul>
+      {
+        nav.map((item) => (
+          <li>
+            <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<div class="drawer-backdrop" hidden></div>
+<nav id="drawer" class="drawer" aria-label="Main (mobile)">
+  <ul>
+    {
+      nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<script>
+  // Header turns solid white once the page is scrolled (transparent at the top, like Google Sites).
+  const header = document.querySelector<HTMLElement>('.site-header')!;
+  const onScroll = () => (header.dataset.scrolled = String(window.scrollY > 0));
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile drawer.
+  const button = document.querySelector<HTMLButtonElement>('.hamburger')!;
+  const drawer = document.getElementById('drawer')!;
+  const backdrop = document.querySelector<HTMLElement>('.drawer-backdrop')!;
+  const setOpen = (open: boolean) => {
+    document.body.classList.toggle('drawer-open', open);
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    backdrop.hidden = !open;
+    if (open) drawer.querySelector<HTMLAnchorElement>('a')?.focus();
+  };
+  button.addEventListener('click', () => setOpen(!document.body.classList.contains('drawer-open')));
+  backdrop.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) {
+      setOpen(false);
+      button.focus();
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    height: var(--header-h);
+    padding: 0 0 0 16px;
+    white-space: nowrap;
+    background: transparent;
+    transition: background-color 0.125s;
+  }
+  .site-header[data-scrolled='true'] {
+    background: #ffffff;
+  }
+  .site-title {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 16pt;
+    line-height: 1.26;
+    padding: 0 12px;
+    margin-bottom: 7px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  /* right padding keeps the tabs where they sat next to the (omitted) Google Sites search icon */
+  .tabs {
+    margin-left: auto;
+    padding: 0 48px 0 0;
+  }
+  .tabs ul {
+    display: flex;
+    gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tabs li {
+    margin: 0;
+    padding: 10px 6px;
+  }
+  .tabs a {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 12pt;
+    line-height: 1.88;
+    padding: 0 10px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .tabs li:hover {
+    opacity: 0.7;
+  }
+  .tabs a[aria-current='page'] {
+    background: var(--ink);
+    color: #ffffff;
+  }
+
+  /* ---------- Mobile: hamburger + drawer ---------- */
+  .hamburger {
+    display: none;
+  }
+  .drawer {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 70;
+    width: 250px;
+    max-width: 80%;
+    height: 100%;
+    padding-top: var(--header-h);
+    overflow-y: auto;
+    background: var(--drawer-bg);
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+  }
+  .drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .drawer li {
+    margin: 20px 0 0;
+    padding-left: 36px;
+  }
+  .drawer a {
+    font-family: var(--font-body);
+    font-size: 12pt;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .drawer a span {
+    padding: 0 6px;
+  }
+  .drawer a[aria-current='page'] {
+    font-weight: 600;
+  }
+  .drawer a[aria-current='page'] span {
+    background: var(--ink);
+    color: #ffffff;
+  }
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  :global(body.drawer-open) .drawer {
+    left: 0;
+    visibility: visible;
+  }
+
+  @media (max-width: 767px) {
+    .tabs {
+      display: none;
+    }
+    .site-header {
+      padding-left: 36px;
+    }
+    .site-title {
+      font-size: 15pt;
+    }
+    .hamburger {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 48px;
+      height: 55px;
+      padding: 16px 12px;
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--ink);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    :global(body.drawer-open) .hamburger span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    :global(body.drawer-open) .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    :global(body.drawer-open) .hamburger span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+  @media (min-width: 768px) {
+    .drawer,
+    .drawer-backdrop {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .drawer,
+    .hamburger span {
+      transition: none;
+    }
+  }
+</style>

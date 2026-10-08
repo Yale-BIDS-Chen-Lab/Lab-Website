@@ -1,0 +1,10 @@
+---
+// Layout for the Markdown pages in src/pages/*.md (set `layout: ../layouts/Page.astro` in their frontmatter).
+import Base from './Base.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <slot />
+</Base>
